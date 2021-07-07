@@ -1,17 +1,13 @@
     
 import os
-
+import logging
 import tornado.web
 
 from mopidy import config, ext
 
 __version__ = "1.1.5"
-logger = logging.getLogger(__name__)
 
-class Extension(ext.Extension):
-    dist_name = "Mopidy-Code-Control"
-    ext_name = "codecontrol"
-    version = __version__
+logger = logging.getLogger(__name__)
 
 class MyRequestHandler(tornado.web.RequestHandler):
     def initialize(self, core):
@@ -22,18 +18,34 @@ class MyRequestHandler(tornado.web.RequestHandler):
             'Hello, world! This is Mopidy %s' %
             self.core.get_version().get())
 
-
-def my_app_factory(config, core):
+def factory(config, core):
     return [
         ('/', MyRequestHandler, {'core': core})
     ]
 
 
-class MyWebClientExtension(ext.Extension):
-    ext_name = 'mywebclient'
+class Extension(ext.Extension):
+    
+    dist_name = "Mopidy-Code-Control"
+    ext_name = "codecontrol"
+    version = __version__
+
+   def get_default_config(self):
+        conf_file = os.path.join(os.path.dirname(__file__), "ext.conf")
+        return config.read(conf_file)
+
+    def get_config_schema(self):
+        schema = super(Extension, self).get_config_schema()
+        schema["discover_pages"] = config.Integer(optional=True)
+        schema["collection_items"] = config.Integer(optional=True)
+        schema["discover_genres"] = config.List(optional=True)
+        schema["discover_tags"] = config.List(optional=True)
+        schema["image_sizes"] = config.List(optional=True)
+        schema["identity"] = config.String(optional=True)
+        return schema
 
     def setup(self, registry):
         registry.add('http:app', {
             'name': self.ext_name,
-            'factory': my_app_factory,
+            'factory': factory,
         })
