@@ -17,7 +17,7 @@ setup(
     author='Cstick',
     author_email='cstick987@gmail.com',
     description='Control mopidy from JSON',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
     packages=find_packages(exclude=['tests', 'tests.*']),
     zip_safe=False,
     include_package_data=True,
