@@ -23,7 +23,7 @@ class PlayRequestHandler(tornado.web.RequestHandler):
         self.core = core
 
     def get(self):
-        self.core.play()
+        self.core.playback.play()
 
 def factory(config, core):
     return [
