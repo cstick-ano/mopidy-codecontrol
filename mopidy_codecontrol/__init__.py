@@ -3,7 +3,7 @@ import os
 import logging
 import tornado.web
 
-from mopidy import config, ext
+from mopidy import config, ext, core
 
 __version__ = "1.1.5"
 
