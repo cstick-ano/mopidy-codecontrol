@@ -7,6 +7,8 @@ def get_version(filename):
     metadata = dict(re.findall("__([a-z]+)__ = '([^']+)'", content))
     return metadata['version']
 
+print(metadata)
+
 
 setup(
     name='Mopidy-Code-Control',
