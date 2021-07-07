@@ -3,8 +3,10 @@ import os
 
 import tornado.web
 
-from mopidy import ext
+from mopidy import config, ext
 
+__version__="1.1.5"
+logger - logging.getLogger(__name__)
 
 class MyRequestHandler(tornado.web.RequestHandler):
     def initialize(self, core):
