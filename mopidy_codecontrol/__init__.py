@@ -42,7 +42,6 @@ class Extension(ext.Extension):
         return schema
 
     def setup(self, registry):
-        registry.add('http:app', {
-            'name': self.ext_name,
-            'factory': factory,
-        })
+        registry.add(
+            'http:app', {'name': self.ext_name, 'factory': factory}
+        )
