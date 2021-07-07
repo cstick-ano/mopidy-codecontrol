@@ -23,7 +23,9 @@ class PlayRequestHandler(tornado.web.RequestHandler):
         self.core = core
 
     def get(self):
-        mopidy.core.Core(playback=PlaybackController.play(None, None))
+        self.write(
+            'Play Mopidy %s' %
+            self.core.get_version().get())
 
 def factory(config, core):
     return [
