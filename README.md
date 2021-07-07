@@ -1,0 +1,2 @@
+# mopidy-codecontrol
+Mopidy control
