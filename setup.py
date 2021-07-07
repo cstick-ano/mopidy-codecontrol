@@ -10,7 +10,7 @@ def get_version(filename):
 
 setup(
     name='Mopidy-Code-Control',
-    version=1.1.5,
+    version='1.1.5',
     url='https://github.com/cstick-ano/mopidy-codecontrol',
     license='Apache License, Version 2.0',
     author='Cstick',
