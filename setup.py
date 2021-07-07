@@ -5,13 +5,12 @@ from setuptools import setup, find_packages
 def get_version(filename):
     content = open(filename).read()
     metadata = dict(re.findall("__([a-z]+)__ = '([^']+)'", content))
-    print(metadata)
-    #return metadata['version']
+    return metadata['version']
 
 
 setup(
     name='Mopidy-Code-Control',
-    version=get_version('mopidy_codecontrol/__init__.py'),
+    version=1.1.5,
     url='https://github.com/cstick-ano/mopidy-codecontrol',
     license='Apache License, Version 2.0',
     author='Cstick',
