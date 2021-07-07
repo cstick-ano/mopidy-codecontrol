@@ -21,14 +21,34 @@ class MyRequestHandler(tornado.web.RequestHandler):
 class PlayRequestHandler(tornado.web.RequestHandler):
     def initialize(self, core):
         self.core = core
-
     def get(self):
         self.core.playback.play()
+        
+class PauseRequestHandler(tornado.web.RequestHandler):
+    def initialize(self, core):
+        self.core = core
+    def get(self):
+        self.core.playback.pause()
+        
+class NextRequestHandler(tornado.web.RequestHandler):
+    def initialize(self, core):
+        self.core = core
+    def get(self):
+        self.core.playback.next()
+        
+class PreviousRequestHandler(tornado.web.RequestHandler):
+    def initialize(self, core):
+        self.core = core
+    def get(self):
+        self.core.playback.previous()        
 
 def factory(config, core):
     return [
         ('/', MyRequestHandler, {'core': core}),
-        ('/play', PlayRequestHandler, {'core':core})
+        ('/play', PlayRequestHandler, {'core':core}),
+        ('/pause', PauseRequestHandler, {'core':core}),
+        ('/next', NextRequestHandler, {'core':core}),
+        ('/previous', PreviousRequestHandler, {'core':core})
     ]
 
 
