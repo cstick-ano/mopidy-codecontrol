@@ -37,7 +37,7 @@ class Extension(ext.Extension):
         schema = super().get_config_schema()
         schema["ip"] = config.Hostname(optional=True)
         schema["port"] = config.Port(optional=True)
-        schema["device_name"] = config.String(optional=True)
+        schema["device_name"] = config.String()
         return schema
 
     def setup(self, registry):
