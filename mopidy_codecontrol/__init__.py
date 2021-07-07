@@ -5,8 +5,13 @@ import tornado.web
 
 from mopidy import config, ext
 
-__version__="1.1.5"
-logger - logging.getLogger(__name__)
+__version__ = "1.1.5"
+logger = logging.getLogger(__name__)
+
+class Extension(ext.Extension):
+    dist_name = "Mopidy-Code-Control"
+    ext_name = "codecontrol"
+    version = __version__
 
 class MyRequestHandler(tornado.web.RequestHandler):
     def initialize(self, core):
