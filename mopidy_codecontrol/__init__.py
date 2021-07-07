@@ -18,9 +18,19 @@ class MyRequestHandler(tornado.web.RequestHandler):
             'Hello, world! This is Mopidy %s' %
             self.core.get_version().get())
 
+class PlayRequestHandler(tornado.web.RequestHandler):
+    def initialize(self, core):
+        self.core = core
+
+    def get(self):
+        self.write(
+            'Play Mopidy %s' %
+            self.core.get_version().get())
+
 def factory(config, core):
     return [
-        ('/', MyRequestHandler, {'core': core})
+        ('/', MyRequestHandler, {'core': core}),
+        ('/play', PlayRequestHandler, {'core':core})
     ]
 
 
