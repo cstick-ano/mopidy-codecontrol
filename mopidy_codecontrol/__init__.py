@@ -18,7 +18,8 @@ class MyRequestHandler(tornado.web.RequestHandler):
             'Hello, world! This is Mopidy %s' %
             self.core.get_version().get())
         self.write(
-            'Now playing ' + self.core.playback.get())
+            'Now playing %s' %
+            self.core.playback.get_current_tl_track())
 
 class PlayRequestHandler(tornado.web.RequestHandler):
     def initialize(self, core):
