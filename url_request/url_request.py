@@ -1,4 +1,5 @@
 import requests
+from tqdm import tqdm
 
 url = 'http://128.199.247.96:3000/api/music'
 playlist = requests.get(url,allow_redirects=True)
@@ -11,7 +12,7 @@ for i,enum in enumerate(playlist_lst):
     if enum == "', '":
         playlist_lst.pop(i)
 
-for j in range (0,len(playlist_lst)):
+for j in tqdm(range (0,len(playlist_lst))):
     music = playlist_lst[j].split('/')
     music_download = requests.get(playlist_lst[j],allow_redirects=True)
     open(music[-1],('wb')).write(music_download.content)
